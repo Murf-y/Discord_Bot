@@ -24,8 +24,10 @@ namespace Discord_Bot.Commands
                         " look at this example to send c#  code:\n" +
                         " \\`\\`\\`cs \n" +
                         " code here\n" +
-                        "\\`\\`\\` \n to send lenghty code use \n" +
+                        "\\`\\`\\` \n to send lenghty code use any code sharing service:\n" +
                         " https://paste.myste.rs/ \n " +
+                        " https://hastebin.com/ \n " +
+                        " https://mystb.in/ \n" +
                         "and send the pasted link in chat !!";
             await ctx.Channel.SendMessageAsync(cb).ConfigureAwait(false);
         }
