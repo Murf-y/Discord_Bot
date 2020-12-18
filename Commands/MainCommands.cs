@@ -131,7 +131,7 @@ namespace Discord_Bot.Commands
         [Command("invite"),Description("this bots invite link")]
         public async Task InviteAsync(CommandContext ctx)
         {
-            await ctx.RespondAsync($"This is my invite link :<https://discord.com/oauth2/authorize?client_id=779291794475188234&scope=bot>");
+            await ctx.RespondAsync($"This is my invite link :\n<https://discord.com/oauth2/authorize?client_id=779291794475188234&scope=bot>");
         }
         #endregion
     }
