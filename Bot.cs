@@ -19,7 +19,7 @@ namespace Discord_Bot
         
         public DiscordClient Client { get; private set; }
 
-
+        private ConfigJson _configjason;
         
 
 
@@ -38,7 +38,7 @@ namespace Discord_Bot
 
 
             var configJson = JsonConvert.DeserializeObject<ConfigJson>(json);
-
+            _configjason = configJson;
             DiscordConfiguration config = new DiscordConfiguration
             {
                 Token = configJson.Token,
@@ -96,15 +96,15 @@ namespace Discord_Bot
         
         private async  Task OnClientReady(object sender, ReadyEventArgs e)
         {
-            DiscordEmoji EyesEmogi = DiscordEmoji.FromName(Client, ":eyes:");
             await Client.UpdateStatusAsync(new DiscordActivity
             {
-                
-                Name = $" {EyesEmogi} Watching All",
+
+                Name = $"use the prefix  {_configjason.Prefix}",
                 ActivityType = ActivityType.Playing,
                 
 
             });
+           
             
         }
         private async Task OnCommandErrored(CommandsNextExtension sender, CommandErrorEventArgs e)
@@ -120,7 +120,8 @@ namespace Discord_Bot
             {
                 embed = new DiscordEmbedBuilder
                 {
-                    Title = $"ArgumentException{ex.Message}",
+                    Title = $"ArgumentException",
+                    Description = ex.Message,
                     Color = DiscordColor.Red,
                 };
             }
