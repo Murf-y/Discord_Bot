@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using System.Linq;
-using System.Collections.Generic;
 using DSharpPlus;
 
 namespace Discord_Bot.Commands
 {
-    public class FunCommands : BaseCommandModule
+    public class MainCommands : BaseCommandModule
     {
 
         
@@ -88,7 +87,7 @@ namespace Discord_Bot.Commands
                     
 
                 };
-                embed.AddField("Id", $"**{user.Id}**")
+                embed.AddField("Id:", $"**{user.Id}**")
                     .AddField("User Created:", user.CreationTimestamp.UtcDateTime.ToString())
                     .AddField("permessions:", ctx.Guild.GetMemberAsync(user.Id).Result.PermissionsIn(ctx.Guild.GetChannel(ctx.Channel.Id)).ToString())
                     
@@ -111,6 +110,7 @@ namespace Discord_Bot.Commands
 
         }
         #endregion
+
 
         #region avatar
         [Command("avatar"),Aliases("pfp"),Description("shows the avatar of a user")]

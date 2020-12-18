@@ -79,7 +79,7 @@ namespace Discord_Bot
             
             Commands.CommandErrored += OnCommandErrored;
 
-            Commands.RegisterCommands<FunCommands>();
+            Commands.RegisterCommands<MainCommands>();
 
             Commands.RegisterCommands<RolesCommands>();
 

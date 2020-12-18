@@ -4,8 +4,6 @@ using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using System.Linq;
 using System;
-using System.Diagnostics;
-using System.Collections.Generic;
 
 namespace Discord_Bot.Commands
 {

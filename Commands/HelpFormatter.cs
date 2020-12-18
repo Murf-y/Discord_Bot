@@ -2,36 +2,33 @@
 using DSharpPlus.CommandsNext.Converters;
 using DSharpPlus.CommandsNext.Entities;
 using DSharpPlus.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace Discord_Bot.Commands
 {
     public class HelpFormatter : BaseHelpFormatter
     {
-
-        private DefaultHelpFormatter _d;
+        private DefaultHelpFormatter defaultHelpFormatter;
 
         public HelpFormatter(CommandContext ctx) : base(ctx)
         {
-            this._d = new DefaultHelpFormatter(ctx);
+            this.defaultHelpFormatter = new DefaultHelpFormatter(ctx);
         }
         public override BaseHelpFormatter WithCommand(Command command)
         {
-            return this._d.WithCommand(command);
+            return this.defaultHelpFormatter.WithCommand(command);
         }
         public override BaseHelpFormatter WithSubcommands(IEnumerable<Command> subcommands)
         {
-            return this._d.WithSubcommands(subcommands);
+            return this.defaultHelpFormatter.WithSubcommands(subcommands);
         }
         public override CommandHelpMessage Build()
         {
-            var message = this._d.Build();
-            var embed = new DiscordEmbedBuilder(message.Embed)
-            {
-                Color = DiscordColor.Green,
-            };
+            var message = this.defaultHelpFormatter.Build();
+
+            var embed = new DiscordEmbedBuilder(message.Embed).WithColor(DiscordColor.Green);
+
             return new CommandHelpMessage(embed: embed);
         }
     }
