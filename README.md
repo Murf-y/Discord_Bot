@@ -13,4 +13,4 @@ the config.json file will contain the token and the prefix example:
    }
 ```
 thats it, now u can run the .exe file generated after the build.
-######This project is licensed under [MIT LICENSE](https://github.com/Murf-y/KloD/blob/master/LICENSE)
+###### This project is licensed under [MIT LICENSE](https://github.com/Murf-y/KloD/blob/master/LICENSE)
