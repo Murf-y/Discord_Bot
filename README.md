@@ -1,6 +1,6 @@
 # KloD
 KloD is  Discord BotBUILT on top of DsharpPlus library.
-#Requirements
+\n #Requirements
 .NET Core 3.x runtime or higher.
 .NET Core 3.0 SDK
 and preferably visual studio.
