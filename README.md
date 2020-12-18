@@ -12,5 +12,6 @@ the config.json file will contain the token and the prefix, example:
       "prefix" : "the prefix here"
    }
 ```
+##### To get the token head to [discord applications ](https://discord.com/developers/applications/) and create an Api bot then u can access ur token.
 thats it, now u can run the .exe file generated after the build.
 ###### This project is licensed under [MIT LICENSE](https://github.com/Murf-y/KloD/blob/master/LICENSE)
