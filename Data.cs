@@ -3,11 +3,9 @@
 namespace Discord_Bot
 
 {
-    public static class Data
+    public class Data
     {
         public static List<ulong> PermittedRolesIds = new List<ulong>{};
-
-
 
     }
 }

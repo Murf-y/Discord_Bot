@@ -8,7 +8,7 @@ namespace Discord_Bot.Commands
 {
     public class RolesCommands : BaseCommandModule
     {
-
+        //evreything related to permettide roles list should be re-implemented
         #region GiveRole command
         [Command("giverole")]
         [Description("Add a specific role")]
@@ -28,6 +28,7 @@ namespace Discord_Bot.Commands
                 //send embed
                 await ctx.Channel.SendMessageAsync(embed: embed).ConfigureAwait(false);
             }
+            
 
             //if the role u requested is permitted 
             else if (Data.PermittedRolesIds.Contains(role.Id))
