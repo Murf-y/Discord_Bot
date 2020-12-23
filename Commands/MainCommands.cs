@@ -16,6 +16,7 @@ namespace Discord_Bot.Commands
         #region codeblock 
         [Command("codeblock"),Aliases("cb","code")]
         [Description("use CodeBlocks!")]
+        [GroupCommand]
         
         public async Task CodeblockAsync(CommandContext ctx)
         {
@@ -48,7 +49,7 @@ namespace Discord_Bot.Commands
         #region spoon command
         [Command("spoon")]
         [Description("")]
-        public async Task spoonfead(CommandContext ctx)
+        public async Task Spoonfead(CommandContext ctx)
         {
             string spoon = "**we are not going to spoon feed u code , but to try to help u solve/undesrtand your problem** ";
             await ctx.Channel.SendMessageAsync(spoon).ConfigureAwait(false);
@@ -89,9 +90,10 @@ namespace Discord_Bot.Commands
                     
 
                 };
+        
                 embed.AddField("Id:", $"**{user.Id}**")
                     .AddField("User Created:", user.CreationTimestamp.UtcDateTime.ToString())
-                    .AddField("permessions:", ctx.Guild.GetMemberAsync(user.Id).Result.PermissionsIn(ctx.Guild.GetChannel(ctx.Channel.Id)).ToString())
+                    .AddField("permissions:", ctx.Guild.GetMemberAsync(user.Id).Result.PermissionsIn(ctx.Guild.GetChannel(ctx.Channel.Id)).ToString())
                     
                     .WithThumbnail(user.GetAvatarUrl(DSharpPlus.ImageFormat.Png));
 

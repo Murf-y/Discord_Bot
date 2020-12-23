@@ -134,10 +134,10 @@ namespace Discord_Bot
                     Color = DiscordColor.Red,
                 };
             }
-            if(embed != null)
-            {
-                await e.Context.RespondAsync("", embed: embed.Build());
-            }
+            
+           
+            await e.Context.RespondAsync("", embed: embed.Build());
+            
         }
         private async Task OnClientErrored(DiscordClient sender, ClientErrorEventArgs e)
         {

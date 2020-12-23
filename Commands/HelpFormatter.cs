@@ -28,6 +28,7 @@ namespace Discord_Bot.Commands
             var message = this.defaultHelpFormatter.Build();
 
             var embed = new DiscordEmbedBuilder(message.Embed).WithColor(DiscordColor.Green);
+            
 
             return new CommandHelpMessage(embed: embed);
         }

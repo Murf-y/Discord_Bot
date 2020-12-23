@@ -4,12 +4,13 @@ using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using System.Linq;
 using System;
+using DSharpPlus;
 
 namespace Discord_Bot.Commands
 {
+    
     public class ModerationCommands : BaseCommandModule
     {
-        
         #region unban
         [Command("unban")]
         [RequirePermissions(DSharpPlus.Permissions.BanMembers)]
@@ -31,12 +32,14 @@ namespace Discord_Bot.Commands
                     Title = $"{user.Username} has been unbanned!",
                     Description = $"Reason : {reason}",
                     Timestamp = DateTime.Now
+                    
 
                 };
                 //unban the user
                 await ctx.Guild.UnbanMemberAsync(user, reason).ConfigureAwait(false);
                 //send the embed
                 await ctx.Channel.SendMessageAsync(embed: embed).ConfigureAwait(false);
+                
             }
 
             else
@@ -142,9 +145,99 @@ namespace Discord_Bot.Commands
 
 
         #region mute
+        [Command("mute")]
+        [Description("mute a member ")]
+        [RequirePermissions(Permissions.ManageRoles)]
         public async Task MuteAsync(CommandContext ctx, DiscordMember m,[RemainingText] string reason = "undefined")
         {
-            //to be implemented
+            if (Data.Mutedrole == null)
+            {
+                var embed = new DiscordEmbedBuilder
+                {
+                    Color = DiscordColor.Red,
+                    Title = "u need to setup the mutedrole!",
+                    Description = $"type <{ctx.Prefix}help setmutedrole> for more info",
+                };
+                await ctx.RespondAsync(embed: embed).ConfigureAwait(false);
+                return;
+            }
+            if (m.Roles.Any(x => x.Id == Data.Mutedrole.Id))
+            {
+                var embed = new DiscordEmbedBuilder
+                {
+                  Color  = DiscordColor.Red,
+                  Title = $"{m.Username} is already muted!"
+                };
+                await ctx.RespondAsync(embed: embed).ConfigureAwait(false);
+            }
+            else
+            {
+                await m.GrantRoleAsync(Data.Mutedrole, reason);
+                var embed = new DiscordEmbedBuilder
+                {
+                    Title = $"{m.Username} was muted",
+                    Color =  DiscordColor.Green,
+                    Description = $"reason: {reason}"
+                };
+                await ctx.RespondAsync(embed: embed).ConfigureAwait(false);
+            }
+            
+        }
+        #endregion
+
+        #region Unmute
+        [Command("unmute")]
+        [Description("unmute a member")]
+        [RequirePermissions(Permissions.ManageRoles)]
+        public async Task Unmute(CommandContext ctx, DiscordMember member, [RemainingText]string reason = "Undefined")
+        {
+            if (Data.Mutedrole == null)
+            {
+                var embed = new DiscordEmbedBuilder
+                {
+                    Color = DiscordColor.Red,
+                    Title = "u need to setup the mutedrole!",
+                    Description = $"type <{ctx.Prefix}help setmutedrole> for more info",
+                };
+                await ctx.RespondAsync(embed: embed).ConfigureAwait(false);
+                return;
+            }
+            if (member.Roles.Any(x => x.Id == Data.Mutedrole.Id))
+            {
+                await member.RevokeRoleAsync(Data.Mutedrole, reason);
+                var embed = new DiscordEmbedBuilder
+                {
+                    Color = DiscordColor.Green,
+                    Title = $"{member.Username} was unmuted!",
+                    Description = $"reason: {reason}"
+                };
+                await ctx.RespondAsync(embed: embed).ConfigureAwait(false);
+            }
+            else
+            {
+                var embed = new DiscordEmbedBuilder
+                {
+                    Color = DiscordColor.Red,
+                    Title = $"{member.Username} is not muted!"
+
+                };
+                await ctx.RespondAsync(embed: embed).ConfigureAwait(false);
+            }
+        }
+
+        #endregion
+
+        #region  setmutedrole
+
+        
+
+
+        [Command("setmutedrole")]
+        [RequirePermissions(Permissions.ManageRoles)]
+        public async Task SetMutedRole(CommandContext ctx, [RemainingText] DiscordRole role)
+        {
+            Data.Mutedrole = role;
+            await ctx.RespondAsync($"Muted role was succesufuly set to {role.Name}");
         }
         #endregion
     }
