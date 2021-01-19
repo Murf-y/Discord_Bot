@@ -1,4 +1,5 @@
-﻿using DSharpPlus.CommandsNext;
+﻿using System;
+using DSharpPlus.CommandsNext;
 using System.Threading.Tasks;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
@@ -138,5 +139,6 @@ namespace Discord_Bot.Commands
             await ctx.RespondAsync($"This is my invite link :\n<https://discord.com/oauth2/authorize?client_id=779291794475188234&scope=bot>");
         }
         #endregion
+
     }
 }

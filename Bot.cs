@@ -53,7 +53,7 @@ namespace Discord_Bot
 
             Client = new DiscordClient(config);
 
-
+            
             
 
             Client.Ready += OnClientReady;
@@ -88,6 +88,7 @@ namespace Discord_Bot
             Commands.SetHelpFormatter<HelpFormatter>();
 
             await Client.ConnectAsync();
+            
 
             await Task.Delay(Timeout.Infinite);
         }
@@ -96,6 +97,8 @@ namespace Discord_Bot
         
         private async  Task OnClientReady(object sender, ReadyEventArgs e)
         {
+          
+            
             await Client.UpdateStatusAsync(new DiscordActivity
             {
 
